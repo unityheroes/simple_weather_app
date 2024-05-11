@@ -1,12 +1,25 @@
 class WeatherModel {
   final String cityName;
-  final int datetimeEpoch;
+
   final String icon;
   final String temp;
   final String maxTemp;
   final String minTemp;
   final String conditions;
   final String description;
+  final int datetimeEpoch;
+
+  String formattedDate() {
+    DateTime dateTime =
+        DateTime.fromMillisecondsSinceEpoch(datetimeEpoch * 1000);
+    return '${dateTime.year}-${dateTime.month}-${dateTime.day}';
+  }
+
+  String convertToFahrenheit({required String tmpvalue}) {
+    double fahrenheit = double.tryParse(tmpvalue) ?? 0;
+    double celsius = (fahrenheit - 32) * 5 / 9;
+    return celsius.toString();
+  }
 
   WeatherModel(
       {required this.cityName,

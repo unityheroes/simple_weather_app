@@ -1,8 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_weather_app/cubits/get_weather_cubit/get_weather_cubit.dart';
 import 'package:simple_weather_app/models/weather_model.dart';
-import 'package:simple_weather_app/services/weather_service.dart';
+
+WeatherModel? weatherModel;
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});
@@ -18,9 +19,10 @@ class SearchView extends StatelessWidget {
         child: Center(
           child: TextField(
             onSubmitted: (value) async {
-              WeatherModel weatherModel =
-                  await WeatherService().getCurrentweather(cityQuery: value);
-              log(weatherModel.cityName);
+              var getWeatherCubit = BlocProvider.of<GetWeatherCubit>(context);
+              getWeatherCubit.getWeather(cityName: value);
+
+              Navigator.pop(context);
             },
             decoration: const InputDecoration(
                 hintText: 'Enter City Name',

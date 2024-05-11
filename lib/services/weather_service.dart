@@ -5,11 +5,10 @@ import 'package:simple_weather_app/models/weather_model.dart';
 
 //https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/cairo?unitGroup=us&key=$apikey&contentType=json
 class WeatherService {
-  final String apiKey = 'RLVBJSEC8EMTYBG3EKNXHS4D6';
   final String domainApi = "https://weather.visualcrossing.com";
   final String cityQuery = "cairo";
   final Dio dio = Dio();
-
+  final String apiKey = 'RLVBJSEC8EMTYBG3EKNXHS4D6';
   Future<WeatherModel> getCurrentweather({required cityQuery}) async {
     try {
       Response response = await dio.get(
