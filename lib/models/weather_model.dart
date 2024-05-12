@@ -17,7 +17,7 @@ class WeatherModel {
 
   String convertToFahrenheit({required String tmpvalue}) {
     double fahrenheit = double.tryParse(tmpvalue) ?? 0;
-    double celsius = (fahrenheit - 32) * 5 / 9;
+    int celsius = ((fahrenheit - 32) * 5 / 9).round();
     return celsius.toString();
   }
 
