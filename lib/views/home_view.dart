@@ -38,12 +38,15 @@ class _HomeViewState extends State<HomeView> {
           builder: (context, state) {
             if (state is InitialState) {
               return const NoWeatherBody();
+            } else if (state is WeatherLoadingState) {
+              return const Center(child: CircularProgressIndicator());
             } else if (state is WeatherLoadedState) {
               return WeatherInfoBody(
                 weather: state.weatherModel,
               );
             } else {
-              return const Text("Oops there error"); // will make error page
+              return const Center(
+                  child: Text("Oops there error")); // will make error page
             }
           },
         ));
